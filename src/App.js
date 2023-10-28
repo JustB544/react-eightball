@@ -1,23 +1,14 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import EightBall from './EightBall';
+import eightball_states from './eightball_states';
 import './App.css';
 
 function App() {
+  const randomState = () => eightball_states[Math.floor(Math.random() * eightball_states.length)];
+  const [eightball, setEightball] = useState({msg: "Think of a question", color: "black"});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" onClick={() => setEightball(randomState())}>
+      <EightBall answers={eightball}/>
     </div>
   );
 }
